@@ -90,6 +90,24 @@ TEST(FactoryTest, OnlyOperator) {
         EXPECT_EQ(nullptr, op);
 }
 
+TEST(FactoryTest, OnlyNumbers) {
+        int argc = 4;
+        char* argv[] = {"./calculator", "4", "5", "6"};
+        Factory* factory = new Factory();
+        Base* op = factory->parse(argv, argc);
+
+        EXPECT_EQ(nullptr, op);
+}
+
+TEST(FactoryTest, UnknownOperator) {
+        int argc = 4;
+        char* argv[] = {"./calculator", "4", "$", "3"};
+        Factory* factory = new Factory();
+        Base* op = factory->parse(argv, argc);
+
+        EXPECT_EQ(nullptr, op);
+}
+
 
 
 int main(int argc, char **argv) {
